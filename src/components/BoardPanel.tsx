@@ -2,11 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { Place, Post, Comment } from "@/types";
+import NativeAdBanner from "./NativeAdBanner";
+import RelatedPlaces from "./RelatedPlaces";
 
 interface Props {
   place: Place;
   open: boolean;
   onClose: () => void;
+  allPlaces?: Place[];
+  onSelectPlace?: (place: Place) => void;
 }
 
 // SNS 아이콘
@@ -88,7 +92,7 @@ function SnsLinks({ place }: { place: Place }) {
   );
 }
 
-export default function BoardPanel({ place, open, onClose }: Props) {
+export default function BoardPanel({ place, open, onClose, allPlaces = [], onSelectPlace }: Props) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [view, setView] = useState<"list" | "write" | "detail">("list");
@@ -185,6 +189,9 @@ export default function BoardPanel({ place, open, onClose }: Props) {
                 {place.reviews && <ReviewAccordion reviews={place.reviews} />}
               </div>
 
+              {/* 네이티브 광고 배너 */}
+              <NativeAdBanner place={place} />
+
               <div className="divide-y">
                 {posts.length === 0 && (
                   <p className="text-center text-gray-400 py-10 text-sm">아직 글이 없어요. 첫 글을 남겨보세요!</p>
@@ -203,6 +210,15 @@ export default function BoardPanel({ place, open, onClose }: Props) {
                   </button>
                 ))}
               </div>
+
+              {/* 추천 장소 (무한 루프 UX) */}
+              {onSelectPlace && (
+                <RelatedPlaces
+                  currentPlace={place}
+                  allPlaces={allPlaces}
+                  onSelectPlace={onSelectPlace}
+                />
+              )}
             </div>
             <div className="p-4 border-t flex-shrink-0">
               <button

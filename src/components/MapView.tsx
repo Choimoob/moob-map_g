@@ -142,6 +142,13 @@ export default function MapView() {
           place={selectedPlace}
           open={panelOpen}
           onClose={() => { setPanelOpen(false); setSelectedPlace(null); }}
+          allPlaces={places}
+          onSelectPlace={(place) => {
+            setSelectedPlace(place);
+            if (mapInstance.current && place.lat && place.lng) {
+              mapInstance.current.panTo({ lat: place.lat, lng: place.lng });
+            }
+          }}
         />
       )}
     </div>
