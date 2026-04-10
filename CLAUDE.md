@@ -26,12 +26,13 @@
 ---
 
 ## 환경변수 (.env.local)
+로컬에만 유지. 절대 커밋 금지.
 ```
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=   # 지도 표시
-GOOGLE_SHEETS_API_KEY=             # Sheets 읽기
-GOOGLE_SHEET_ID=                   # 1jhu9fJEocCEbZ2vPX4SbrTXU4hmgRG2GjDDuHzAjMAk
-NEXT_PUBLIC_SUPABASE_URL=          # https://wxucjbnuamaifshjskwg.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=     # sb_publishable__...
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+GOOGLE_SHEETS_API_KEY=
+GOOGLE_SHEET_ID=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 ---
